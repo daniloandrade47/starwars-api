@@ -1,9 +1,8 @@
-FROM node:12.18-alpine
-MAINTAINER Danilo S. Andrade <danilo.andrade47@gmail.com>
-ENV NODE_ENV production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "yarn.lock","./"]
-RUN yarn install --production --silent && mv node_modules ../
-COPY . .
-EXPOSE 9000
-CMD yarn start
+FROM golang:1 as builder
+WORKDIR /app
+COPY .  .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+FROM alpine:latest  
+RUN apk --no-cache add ca-certificates
+COPY --from=builder /app/app /bin/app
+CMD ["/bin/app"]%
