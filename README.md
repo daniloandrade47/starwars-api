@@ -1,3 +1,3 @@
 # starwars-api
-Repositorio de exemplo para geração da imagem no dockerhub
-Aula de Kubernetes
+Aula de Kubernetes - Repositorio de exemplo para geração da imagem no dockerhub
+
