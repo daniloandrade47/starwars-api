@@ -1,19 +1,19 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: hello-api-deployment
+  name: starwars-api-deployment
 spec:
   selector:
     matchLabels:
-      app: hello-api
+      app: starwars-api
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: hello-api
+        app: starwars-api
     spec:
       containers:
-      - name: hello-api
-        image: diegofernandes/k8s-facef:0.0.1
+      - name: starwars-api
+        image: dan47/starwars-api:0.0.3
         ports:
-        - containerPort: 8080
+        - containerPort: 9000
